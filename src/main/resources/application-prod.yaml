@@ -6,7 +6,7 @@ spring:
       default-filters:
         - TokenRelay=
       routes:
-        - id: WEB
+        - id: API
           uri: http://172.23.9.9:8081
           predicates:
             - Path=/transguard/bls
@@ -15,7 +15,7 @@ spring:
           uri: http://172.23.9.9:3000
           predicates:
             - Path=/**
-          order: 0
+          order: 1
 
 
 
