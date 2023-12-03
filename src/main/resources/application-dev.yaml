@@ -9,13 +9,13 @@ spring:
         - id: WEB
           uri: http://172.23.9.9:8081
           predicates:
-            - Path=/transguard/bls
-          order: 0
-        - id: WEB
-          uri: http://172.23.9.9:3000
-          predicates:
             - Path=/**
           order: 0
+#        - id: WEB
+#          uri: http://172.23.9.9:3000
+#          predicates:
+#            - Path=/**
+#          order: 0
 
 
 
@@ -24,10 +24,10 @@ spring:
       client:
         registration:
           keycloak:
-            client-id: test
-            client-secret: 6OjOSHAGNdO6i1NpePQZjBv1uelr9yR5
+            client-id: tg-bls
+            client-secret: NgiBH9T4rgvcKZLumeDl5zhSEr4U6OSv
             authorization-grant-type: authorization_code
-            redirect-uri: https://172.23.9.9:8443/login/oauth2/code/keycloak
+            redirect-uri: http://172.23.9.9/auth/login/oauth2/code/keycloak
             scope:
               - email
               - profile
@@ -36,10 +36,10 @@ spring:
               - offline_access
         provider:
           keycloak:
-            issuer-uri: https://172.23.9.9:8443/realms/master
+            issuer-uri: http://172.23.9.9/auth/realms/Transguard
             user-name-attribute: preferred_username
 
 
       resourceserver:
         jwt:
-          issuer-uri: https://172.23.9.9:8443/realms/master
+          issuer-uri: http://172.23.9.9/auth/realms/Transguard
