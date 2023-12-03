@@ -6,11 +6,11 @@ spring:
       default-filters:
         - TokenRelay=
       routes:
-        - id: WEB
-          uri: http://172.23.9.9:8081
-          predicates:
-            - Path=/**
-          order: 0
+#        - id: WEB
+#          uri: http://172.23.9.9:8081
+#          predicates:
+#            - Path=/**
+#          order: 0
 #        - id: WEB
 #          uri: http://172.23.9.9:3000
 #          predicates:
@@ -27,7 +27,7 @@ spring:
             client-id: tg-bls
             client-secret: NgiBH9T4rgvcKZLumeDl5zhSEr4U6OSv
             authorization-grant-type: authorization_code
-            redirect-uri: http://172.23.9.9/auth/login/oauth2/code/keycloak
+            redirect-uri: http://localhost:8586/login/oauth2/code/keycloak
             scope:
               - email
               - profile
