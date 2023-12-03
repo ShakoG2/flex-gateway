@@ -1,0 +1,5 @@
+FROM docker-proxy.grena.ge/bellsoft/liberica-openjdk-alpine:17
+ARG JAR_FILE=build/libs/gateway-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} /usr/src/app/gateway-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-Xmx1048m", "-jar", "/usr/src/app/gateway-0.0.1-SNAPSHOT.jar"]
+#ENTRYPOINT ["java", "-Xmx1048m", "-Xms1048m", "-Dcom.sun.management.jmxremote.port=9876", "-Dcom.sun.management.jmxremote.rmi.port=9876", "-Dcom.sun.management.jmxremote.ssl=false", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.host=0.0.0.0", "-Djava.rmi.server.hostname=0.0.0.0", "-Xlog:gc*:file=/usr/src/app/log/gc.log:utctime,pid,level,tags:filecount=5,filesize=200M", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:HeapDumpPath=/usr/src/app/mps", "-XX:+UnlockDiagnosticVMOptions", "-XX:+DebugNonSafepoints", "-XX:+FlightRecorder", "-XX:StartFlightRecording=delay=2s,name=StartFlightRecorder,filename=/usr/src/app/recordings/flight-recording.jfr,maxage=36h,dumponexit=true,disk=true", "-Dspring.profiles.active=preprod", "-Dspring.config.location=./usr/src/app/conf/", "-Dspring.config.name=datasource,application", "-jar", "/usr/src/app/gateway-0.0.1-SNAPSHOT.jar"]
