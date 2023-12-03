@@ -36,10 +36,10 @@ spring:
               - offline_access
         provider:
           keycloak:
-            issuer-uri: http://keycloak:8080/auth/realms/Transguard
+            issuer-uri: http://172.23.9.9/auth/realms/Transguard
             user-name-attribute: preferred_username
 
 
       resourceserver:
         jwt:
-          issuer-uri: http://keycloak:8080/auth/realms/Transguard
+          issuer-uri: http://172.23.9.9/auth/realms/Transguard
