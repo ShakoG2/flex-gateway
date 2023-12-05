@@ -48,7 +48,7 @@ public class SecurityConfig {
 
 
     @Bean
-    public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) throws Exception {
+    public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
 
         ServerWebExchangeMatcher xhrMatcher = exchangeMatcher();
 

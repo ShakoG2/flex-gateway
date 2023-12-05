@@ -27,7 +27,7 @@ spring:
             client-id: tg-bls
             client-secret: NgiBH9T4rgvcKZLumeDl5zhSEr4U6OSv
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8586/login/oauth2/code/keycloak
+            redirect-uri: http://172.23.9.9:8086/login/oauth2/code/keycloak
             scope:
               - email
               - profile
