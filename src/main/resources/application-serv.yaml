@@ -7,12 +7,12 @@ spring:
         - TokenRelay=
       routes:
         - id: API
-          uri: http://172.23.9.9:8081
+          uri: http://${BLS}:${PORT_BLS}
           predicates:
-            - Path=/transguard/bls/**
+            - Path=${CONTEXT_PATH}**
           order: 0
         - id: WEB
-          uri: http://172.23.9.9:3000
+          uri: http://${FRONT}:${FRONT_PORT}
           predicates:
             - Path=/**
           order: 1
@@ -27,7 +27,7 @@ spring:
             client-id: tg-bls
             client-secret: NgiBH9T4rgvcKZLumeDl5zhSEr4U6OSv
             authorization-grant-type: authorization_code
-            redirect-uri: http://172.23.9.9:8086/login/oauth2/code/keycloak
+            redirect-uri: http://${SERVER_IP}:${GATEWAY_PORT}/login/oauth2/code/keycloak
             scope:
               - email
               - profile
@@ -36,10 +36,13 @@ spring:
               - offline_access
         provider:
           keycloak:
-            issuer-uri: http://172.23.9.9/auth/realms/Transguard
+            issuer-uri: http://${KEYCLOAK}:${KEYCLOAK_PORT}/realms/Transguard
             user-name-attribute: preferred_username
-
+      # ???????? ENV
+      #??? ?? ENV
+      # ???????? ENV
+      #??????? ?? ENV
 
       resourceserver:
         jwt:
-          issuer-uri: http://172.23.9.9/auth/realms/Transguard
+          issuer-uri: http://${KEYCLOAK}:${KEYCLOAK_PORT}/realms/Transguard
