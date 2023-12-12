@@ -1,5 +1,5 @@
 server:
-  port: 8586
+  port: ${GATEWAY_IN_PORT}
 spring:
   cloud:
     gateway:
@@ -7,12 +7,12 @@ spring:
         - TokenRelay=
       routes:
         - id: API
-          uri: http://${BLS}:${PORT_BLS}
+          uri: http://${BLS_HOST}:${PORT_BLS} #tg_bls_env , composer_env
           predicates:
             - Path=${CONTEXT_PATH}**
           order: 0
         - id: WEB
-          uri: http://${FRONT}:${FRONT_PORT}
+          uri: http://${FRONT_HOST}:${FRONT_PORT} #.FRONT.ENV
           predicates:
             - Path=/**
           order: 1
@@ -24,10 +24,10 @@ spring:
       client:
         registration:
           keycloak:
-            client-id: tg-bls
-            client-secret: NgiBH9T4rgvcKZLumeDl5zhSEr4U6OSv
+            client-id: ${CLIENT_ID} #KEYCLOAK ENV
+            client-secret: ${CLIENT_SECRET}
             authorization-grant-type: authorization_code
-            redirect-uri: http://${SERVER_IP}:${GATEWAY_PORT}/login/oauth2/code/keycloak
+            redirect-uri: ${WEB_IP}:${GATEWAY_PORT}/login/oauth2/code/keycloak # COMPOSER
             scope:
               - email
               - profile
@@ -36,7 +36,8 @@ spring:
               - offline_access
         provider:
           keycloak:
-            issuer-uri: http://${KEYCLOAK}:${KEYCLOAK_PORT}/realms/Transguard
+#            issuer-uri: ${KEYCLOAK}:${KEYCLOAK_PORT}/realms/${REALM_NAME} #KEYCLOAK ENV
+            issuer-uri: ${KEYCLOAK}/auth/realms/${REALM_NAME}
             user-name-attribute: preferred_username
       # ???????? ENV
       #??? ?? ENV
@@ -45,4 +46,4 @@ spring:
 
       resourceserver:
         jwt:
-          issuer-uri: http://${KEYCLOAK}:${KEYCLOAK_PORT}/realms/Transguard
+          issuer-uri: ${KEYCLOAK}/auth/realms/${REALM_NAME} #KEYCLOAK ENV

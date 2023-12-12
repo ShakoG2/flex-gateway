@@ -38,6 +38,8 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	implementation 'org.keycloak:keycloak-admin-client:22.0.5'
+
 
 	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
 
